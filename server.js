@@ -14,7 +14,8 @@ app.set('view engine', 'jsx')
 app.engine('jsx', require('express-react-views').createEngine())
 
 // Breads
-const breadsController = require('./controllers/breads_controller.js')
+const breadsController = require('./controllers/breads_controller.js');
+
 app.use('/breads', breadsController)
 
 // ROUTES
@@ -26,7 +27,7 @@ app.get('/', (req, res) => {
 
 // 404 Page
 app.get('*', (req, res) => {
-    res.send('404')
+    res.render('error404')
 })
 
 

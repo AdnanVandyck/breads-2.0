@@ -1,0 +1,19 @@
+const React = require('react')
+const Default = require('./layouts/default')
+
+function error404 () {
+    return (
+      <Default>
+          <main>
+              <h1>404: PAGE NOT FOUND</h1>
+              <p>Oops, sorry, we can't find this page!</p>
+          </main>
+          <li>
+                <a href="/breads">Go Home</a>
+            </li>
+      </Default>
+    )
+  }
+  
+
+module.exports = error404
