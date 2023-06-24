@@ -7,6 +7,9 @@ require('dotenv').config()
 const app = express();
 const PORT = process.env.PORT
 
+// MIDDLEWARE
+app.use(express.urlencoded({extended: true}))
+
 app.use(express.static('public'))
 app.use(methodOverride('_method'))
 
