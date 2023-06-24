@@ -20,13 +20,17 @@ breads.post('/', (req, res) => {
 
 // INDEX
 breads.get('/', (req,res) => {
-    res.render('index',
-    {
-        breads: Bread,
-        title: 'Index Page'
-    }
-    )
-    // res.send(Bread)
+    Bread.find()
+    .then(foundBreads => {
+        console.log(foundBreads)
+    })
+    // res.render('index',
+    // {
+    //     breads: foundBreads,
+    //     title: 'Index Page'
+    // }
+    // )
+
 })
 
 
