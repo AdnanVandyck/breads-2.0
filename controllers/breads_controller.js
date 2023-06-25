@@ -46,10 +46,11 @@ breads.get('/new', (req, res) => {
 })
 
 // EDIT
-breads.get('/:id/edit', (req, res) => {
+breads.get('/:id/edit', async(req, res) => {
+    const bread = await Bread.findById(req.params.id)
     res.render('edit', {
-      bread: Bread[req.params.id],
-      index: req.params.indexArray
+      bread: bread
+    //   index: req.params.indexArray
     })
 })
 
@@ -69,7 +70,7 @@ try{const foundBread = await Bread.findById(req.params.id)
 
 
 // UPDATE
-breads.put('/:arrayIndex', (req, res) => {
+breads.put('/:id', async(req, res) => {
     console.log(req.body)
     // console.log(Bread[req.params.arrayIndex])
     if(req.body.hasGluten === 'on') {
@@ -77,8 +78,10 @@ breads.put('/:arrayIndex', (req, res) => {
     } else {
         req.body.hasGluten = false
     }
-    Bread[req.params.arrayIndex] = req.body
-    res.redirect(`/breads/${req.params.arrayIndex}`)
+    await Bread.findByIdAndUpdate(req.params.id, req.body, { new: true })
+    res.redirect(`/breads/${req.params.id}`)
+    // Bread[req.params.arrayIndex] = req.body
+    // res.redirect(`/breads/${req.params.arrayIndex}`)
 })
 
 
