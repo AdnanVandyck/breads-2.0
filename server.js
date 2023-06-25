@@ -23,6 +23,7 @@ app.use(express.urlencoded({extended: true}))
 app.use(express.static('public'))
 app.use(methodOverride('_method'))
 
+
 //MIDDLEWARE
 app.set('views', __dirname + '/views')
 app.set('view engine', 'jsx')
