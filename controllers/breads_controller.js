@@ -46,9 +46,9 @@ breads.get('/new', (req, res) => {
 })
 
 // EDIT
-breads.get('/:indexArray/edit', (req, res) => {
+breads.get('/:id/edit', (req, res) => {
     res.render('edit', {
-      bread: Bread[req.params.indexArray],
+      bread: Bread[req.params.id],
       index: req.params.indexArray
     })
 })
@@ -84,10 +84,16 @@ breads.put('/:arrayIndex', (req, res) => {
 
 
 // DELETE
-breads.delete('/:indexArray', (req, res) => {
-    Bread.splice(req.params.indexArray, 1)
-    res.status(303).redirect('/breads')
-})
+
+breads.delete('/:id', async(req, res) => {
+await Bread.findByIdAndDelete(req.params.id)
+res.status(303).redirect('/breads') 
+    
+    })
+// breads.delete('/:indexArray', (req, res) => {
+//     Bread.splice(req.params.indexArray, 1)
+//     res.status(303).redirect('/breads')
+// })
 
 
 module.exports = breads
