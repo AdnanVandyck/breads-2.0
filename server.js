@@ -36,6 +36,11 @@ const breadsController = require('./controllers/breads_controller.js');
 
 app.use('/breads', breadsController)
 
+// Breads
+const bakersController = require('./controllers/bakers_controller.js');
+
+app.use('/bakers', bakersController)
+
 // ROUTES
 
 //HOMEPAGE
