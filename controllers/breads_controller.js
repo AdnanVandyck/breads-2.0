@@ -109,10 +109,8 @@ try{
         bread: foundBread
     })
 } catch (error) {
-    res.status(404).redirect('/breads')
-    console.log(error)
+res.render('error404')
 }
-
 })
 
 
