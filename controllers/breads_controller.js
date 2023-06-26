@@ -52,8 +52,8 @@ breads.post('/', async(req, res) => {
 
 // INDEX
 breads.get('/', async(req,res) => {
-    const foundBakers = await Baker.find().populate()
-    const foundBreads = await Bread.find()
+    const foundBakers = await Baker.find().lean()
+    const foundBreads = await Bread.find().limit(2).lean()
 
 
                 res.render('index',
