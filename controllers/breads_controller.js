@@ -52,12 +52,14 @@ breads.post('/', (req, res) => {
 
 // INDEX
 breads.get('/', async(req,res) => {
+    const foundBakers = await Baker.find().populate()
     const foundBreads = await Bread.find()
 
 
                 res.render('index',
         {
             breads: foundBreads,
+            bakers: foundBakers,
             title: 'Index Page',
             
         }) 

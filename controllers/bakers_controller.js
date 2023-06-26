@@ -10,7 +10,19 @@ baker.get('/data/seed', async(req, res) => {
     res.redirect('/breads')
 })
 
+// INDEX
+baker.get('/', async(req,res) => {
+    const foundBakers = await Baker.find().populate('breads')
+    res.send(foundBakers)
 
+
+        //         res.render('index',
+        // {
+        //     breads: foundBreads,
+        //     title: 'Index Page',
+            
+        // }) 
+    })
 // export
 module.exports = baker                    
 
