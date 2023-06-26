@@ -36,7 +36,7 @@ breads.get('/data/seed', async(req, res) => {
 
 
 // CREATE
-breads.post('/', (req, res) => {
+breads.post('/', async(req, res) => {
     if (!req.body.image) {
       req.body.image = undefined
     }
@@ -45,7 +45,7 @@ breads.post('/', (req, res) => {
     } else {
       req.body.hasGluten = false
     }
-    Bread.create(req.body)
+    await Bread.create(req.body)
     res.redirect('/breads')
   })
   
@@ -87,8 +87,8 @@ const foundBakers = await Baker.find(req.params.id)
 
 // EDIT
 breads.get('/:id/edit', async(req, res) => {
-    const bakers = await Baker.find()
     const bread = await Bread.findById(req.params.id)
+    const bakers = await Baker.find()
 
     res.render('edit', {
       bread: bread,

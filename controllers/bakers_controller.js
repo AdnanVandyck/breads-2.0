@@ -10,19 +10,30 @@ baker.get('/data/seed', async(req, res) => {
     res.redirect('/breads')
 })
 
-// INDEX
-baker.get('/', async(req,res) => {
-    const foundBakers = await Baker.find().populate('breads')
-    res.send(foundBakers)
+// INDEX 
+baker.get('/', (req, res) => {
+    Baker.find()
+        .populate('breads')
+        .then(foundBakers => {
+            res.send(foundBakers)
+        })
+})                    
 
 
-        //         res.render('index',
-        // {
-        //     breads: foundBreads,
-        //     title: 'Index Page',
-            
-        // }) 
-    })
+    
+// Show: 
+baker.get('/:id', (req, res) => {
+    Baker.findById(req.params.id)
+        .populate('breads')
+        .then(foundBaker => {
+            res.render('bakerShow', {
+                baker: foundBaker
+            })
+        })
+})
+
+
+
 // export
 module.exports = baker                    
 
